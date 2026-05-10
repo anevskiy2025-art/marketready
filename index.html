@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketReady — AI-Powered Product Listings That Sell</title>
+<meta name="description" content="MarketReady uses AI to create optimized product listings for Amazon, eBay, Walmart, Etsy & Shopify. SEO titles, bullet points, keywords — all in seconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#13131a;--surface2:#1a1a24;--border:#252530;--text:#f0f0f5;--text2:#a0a0b5;--accent:#6c5ce7;--accent2:#4fc3f7;--gradient:linear-gradient(135deg,#6c5ce7,#4fc3f7);--gradient2:linear-gradient(135deg,#4fc3f7,#6c5ce7);--radius:12px;--radius-lg:20px}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0}
+.section-label{font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:16px;line-height:1.2}
+.section-sub{color:var(--text2);font-size:1.05rem;max-width:600px;margin:0 auto 48px}
+.text-center{text-align:center}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:all .3s ease;text-decoration:none}
+.btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 24px rgba(108,92,231,.35)}
+.btn-primary:hover{box-shadow:0 6px 32px rgba(108,92,231,.55);transform:translateY(-2px)}
+.btn-outline{border:1.5px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:16px 0;transition:all .3s ease}
+nav.scrolled{background:rgba(10,10,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.4rem;font-weight:800;letter-spacing:-.5px}
+.logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:.9rem;color:var(--text2);transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{padding:10px 24px;font-size:.85rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--text);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(10,10,15,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.active{display:flex}
+.mobile-menu a{font-size:1.3rem;color:var(--text2)}
+.mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--text);font-size:2rem;cursor:pointer}
+.hero{padding:160px 0 100px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(108,92,231,.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;border:1px solid var(--border);font-size:.8rem;color:var(--text2);margin-bottom:28px;background:var(--surface)}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:24px;max-width:800px}
+.hero h1 .gradient{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--text2);max-width:560px;margin-bottom:36px;line-height:1.7}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:48px;border-top:1px solid var(--border)}
+.hero-stats .stat{text-align:left}
+.hero-stats .stat-num{font-size:1.8rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stats .stat-label{font-size:.8rem;color:var(--text2);margin-top:4px}
+.mp-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.mp-grid{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap}
+.mp-item{display:flex;flex-direction:column;align-items:center;gap:12px;opacity:.6;transition:opacity .3s}
+.mp-item:hover{opacity:1}
+.mp-icon{width:52px;height:52px;border-radius:12px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid var(--border)}
+.mp-name{font-size:.8rem;color:var(--text2);font-weight:500}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative}
+.steps-grid::before{content:'';position:absolute;top:40px;left:calc(16.66% + 16px);right:calc(16.66% + 16px);height:2px;background:var(--gradient);opacity:.3}
+.step-card{text-align:center;position:relative}
+.step-num{width:80px;height:80px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 24px;position:relative;z-index:1}
+.step-card h3{font-size:1.15rem;font-weight:600;margin-bottom:8px}
+.step-card p{color:var(--text2);font-size:.92rem;max-width:280px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 28px;transition:all .3s ease}
+.feature-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 32px rgba(108,92,231,.12)}
+.feature-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(108,92,231,.15),rgba(79,195,247,.15));display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:20px}
+.feature-card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+.feature-card p{color:var(--text2);font-size:.9rem;line-height:1.6}
+.pricing-section{background:var(--surface)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.price-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 32px;transition:all .3s;position:relative}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(108,92,231,.15)}
+.price-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gradient);padding:6px 20px;border-radius:50px;font-size:.75rem;font-weight:600;white-space:nowrap}
+.price-card h3{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.price-card .price-desc{color:var(--text2);font-size:.85rem;margin-bottom:24px}
+.price-amount{font-size:3rem;font-weight:800;line-height:1}
+.price-amount span{font-size:.95rem;font-weight:400;color:var(--text2)}
+.price-list{list-style:none;margin:28px 0 32px;display:flex;flex-direction:column;gap:12px}
+.price-list li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text2)}
+.price-list li::before{content:'✓';color:#4ade80;font-weight:700;font-size:.8rem;width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.price-btn{width:100%;text-align:center;justify-content:center}
+.test-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.test-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;transition:all .3s}
+.test-card:hover{border-color:var(--accent)}
+.test-stars{color:#fbbf24;font-size:.9rem;margin-bottom:16px;letter-spacing:2px}
+.test-text{color:var(--text2);font-size:.95rem;line-height:1.7;margin-bottom:20px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-avatar{width:44px;height:44px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.test-name{font-weight:600;font-size:.9rem}
+.test-role{color:var(--text2);font-size:.8rem}
+.cta-section{position:relative;overflow:hidden}
+.cta-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:64px 48px;text-align:center;position:relative}
+.cta-box::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(108,92,231,.08) 0%,transparent 70%);pointer-events:none}
+.cta-box h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;margin-bottom:12px}
+.cta-box p{color:var(--text2);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.email-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.email-form input{flex:1;padding:14px 20px;border-radius:50px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.95rem;outline:none;font-family:inherit;transition:border-color .3s}
+.email-form input:focus{border-color:var(--accent)}
+.email-form input::placeholder{color:#555}
+.form-note{color:var(--text2);font-size:.75rem;margin-top:12px}
+footer{border-top:1px solid var(--border);padding:48px 0 32px}
+.footer-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:40px;flex-wrap:wrap;gap:32px}
+.footer-brand{max-width:300px}
+.footer-brand p{color:var(--text2);font-size:.85rem;margin-top:8px;line-height:1.6}
+.footer-links-grid{display:flex;gap:64px}
+.footer-col h4{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);margin-bottom:16px}
+.footer-col a{display:block;color:var(--text2);font-size:.88rem;margin-bottom:10px;transition:color .3s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{color:var(--text2);font-size:.8rem}
+.footer-social{display:flex;gap:16px}
+.footer-social a{color:var(--text2);transition:color .3s;font-size:.9rem}
+.footer-social a:hover{color:var(--accent)}
+@media(max-width:1024px){
+.features-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
+.steps-grid::before{display:none}
+}
+@media(max-width:768px){
+.section{padding:72px 0}
+.hero{padding:120px 0 72px}
+.nav-links{display:none}
+.hamburger{display:flex}
+.features-grid,.pricing-grid,.steps-grid{grid-template-columns:1fr}
+.test-grid{grid-template-columns:1fr}
+.hero-stats{flex-direction:column;gap:24px}
+.mp-grid{gap:28px}
+.email-form{flex-direction:column}
+.email-form .btn{width:100%;justify-content:center}
+.footer-top{flex-direction:column}
+.footer-links-grid{flex-direction:column;gap:32px}
+.footer-bottom{flex-direction:column;text-align:center}
+.cta-box{padding:40px 24px}
+.price-card{max-width:400px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar"> <div class="container nav-inner"> <a href="#" class="logo">Market<span>Ready</span></a> <div class="nav-links"> <a href="#how">How It Works</a> <a href="#features">Features</a> <a href="#pricing">Pricing</a> <a href="#testimonials">Reviews</a> <a href="#cta" class="btn btn-primary nav-cta">Get Started</a> </div> <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"> <span></span><span></span><span></span> </button> </div> </nav> <div class="mobile-menu" id="mobileMenu"> <button class="mobile-close" onclick="toggleMenu()">&times;</button> <a href="#how" onclick="toggleMenu()">How It Works</a> <a href="#features" onclick="toggleMenu()">Features</a> <a href="#pricing" onclick="toggleMenu()">Pricing</a> <a href="#testimonials" onclick="toggleMenu()">Reviews</a> <a href="#cta" class="btn btn-primary" onclick="toggleMenu()">Get Started</a> </div>
+<section class="hero"> <div class="container"> <div class="fade-up"> <div class="hero-badge"><span class="dot"></span> Now supporting Walmart Marketplace</div> <h1>AI-Powered Product Listings <span class="gradient">That Sell</span></h1> <p>Stop spending hours writing product listings. MarketReady's AI creates SEO-optimized titles, descriptions, bullet points, and keywords for Amazon, eBay, Walmart, Etsy, and Shopify — in seconds.</p> <div class="hero-btns"> <a href="#cta" class="btn btn-primary">Create Your Listing <span>&rarr;</span></a> <a href="#how" class="btn btn-outline">See How It Works</a> </div> <div class="hero-stats"> <div class="stat"><div class="stat-num">2M+</div><div class="stat-label">Listings Created</div></div> <div class="stat"><div class="stat-num">38%</div><div class="stat-label">Avg. Sales Increase</div></div> <div class="stat"><div class="stat-num">12,000+</div><div class="stat-label">Active Sellers</div></div> <div class="stat"><div class="stat-num">4.9/5</div><div class="stat-label">User Rating</div></div> </div> </div> </div> </section>
+<section class="mp-section section" style="padding:56px 0"> <div class="container"> <p class="text-center" style="color:var(--text2);font-size:.85rem;margin-bottom:32px;font-weight:500;letter-spacing:1px;text-transform:uppercase">Optimized for the top marketplaces</p> <div class="mp-grid fade-up"> <div class="mp-item"><div class="mp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff9900" stroke-width="2"><path d="M2 17c2-2 5-3 8-3s6 1 8 3"/><path d="M12 22c-1.5-1.5-2.5-3-2.5-5s1-3.5 2.5-5c1.5 1.5 2.5 3 2.5 5s-1 3.5-2.5 5z"/></svg></div><span class="mp-name">Amazon</span></div> <div class="mp-item"><div class="mp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e53238" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg></div><span class="mp-name">eBay</span></div> <div class="mp-item"><div class="mp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0071ce" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg></div><span class="mp-name">Walmart</span></div> <div class="mp-item"><div class="mp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f56400" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span class="mp-name">Etsy</span></div> <div class="mp-item"><div class="mp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#95bf47" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M9 4v16M4 9h16"/></svg></div><span class="mp-name">Shopify</span></div> </div> </div> </section>
+<section class="section" id="how"> <div class="container"> <div class="text-center fade-up"> <div class="section-label">How It Works</div> <h2 class="section-title">From Product Info to Perfect Listing in 3 Steps</h2> <p class="section-sub">No copywriting experience needed. Just tell us about your product and let our AI handle the rest.</p> </div> <div class="steps-grid"> <div class="step-card fade-up"> <div class="step-num">1</div> <h3>Upload Product Info</h3> <p>Enter your product details, images, and target marketplace. Paste a URL or type a quick description — we'll take it from there.</p> </div> <div class="step-card fade-up"> <div class="step-num">2</div> <h3>AI Generates Your Listing</h3> <p>Our AI analyzes top-performing listings, identifies winning keywords, and crafts SEO-optimized content tailored to your marketplace.</p> </div> <div class="step-card fade-up"> <div class="step-num">3</div> <h3>Download &amp; Publish</h3> <p>Review, edit if needed, then export your listing in the perfect format for your marketplace. Copy-paste and start selling.</p> </div> </div> </div> </section>
+<section class="section" id="features" style="background:var(--surface)"> <div class="container"> <div class="text-center fade-up"> <div class="section-label">Features</div> <h2 class="section-title">Everything You Need to Sell More</h2> <p class="section-sub">Built by sellers, for sellers. Every feature is designed to boost your visibility and conversions.</p> </div> <div class="features-grid"> <div class="feature-card fade-up"> <div class="feature-icon">🎯</div> <h3>SEO-Optimized Titles</h3> <p>AI-crafted titles that rank higher in marketplace search results, driving more organic traffic to your listings.</p> </div> <div class="feature-card fade-up"> <div class="feature-icon">✍️</div> <h3>Compelling Bullet Points</h3> <p>Benefit-driven bullet points that highlight key features and convince shoppers to click "Add to Cart."</p> </div> <div class="feature-card fade-up"> <div class="feature-icon">🔑</div> <h3>Smart Keyword Research</h3> <p>Automatically discovers high-volume, low-competition keywords specific to your product category and marketplace.</p> </div> <div class="feature-card fade-up"> <div class="feature-icon">🌐</div> <h3>Multi-Marketplace Support</h3> <p>One product, five marketplaces. Generate platform-specific listings for Amazon, eBay, Walmart, Etsy, and Shopify simultaneously.</p> </div> <div class="feature-card fade-up"> <div class="feature-icon">⚡</div> <h3>Lightning Fast</h3> <p>Generate a complete, publish-ready listing in under 30 seconds. What used to take hours now takes moments.</p> </div> <div class="feature-card fade-up"> <div class="feature-icon">📊</div> <h3>A/B Testing Variants</h3> <p>Generate multiple listing variations to test which titles and descriptions convert best for your audience.</p> </div> </div> </div> </section>
+<section class="section pricing-section" id="pricing"> <div class="container"> <div class="text-center fade-up"> <div class="section-label">Pricing</div> <h2 class="section-title">Simple, Transparent Pricing</h2> <p class="section-sub">Start free, scale as you grow. No hidden fees, no long-term contracts.</p> </div> <div class="pricing-grid"> <div class="price-card fade-up"> <h3>Starter</h3> <p class="price-desc">Perfect for new sellers</p> <div class="price-amount">$29<span>/mo</span></div> <ul class="price-list"> <li>10 listings per month</li> <li>All 5 marketplaces</li> <li>SEO-optimized titles</li> <li>Keyword suggestions</li> <li>Email support</li> </ul> <a href="#cta" class="btn btn-outline price-btn">Get Started</a> </div> <div class="price-card featured fade-up"> <div class="price-badge">Most Popular</div> <h3>Professional</h3> <p class="price-desc">For growing businesses</p> <div class="price-amount">$59<span>/mo</span></div> <ul class="price-list"> <li>50 listings per month</li> <li>All 5 marketplaces</li> <li>A/B testing variants</li> <li>Advanced keyword research</li> <li>Bulk import &amp; export</li> <li>Priority support</li> </ul> <a href="#cta" class="btn btn-primary price-btn">Get Started</a> </div> <div class="price-card fade-up"> <h3>Enterprise</h3> <p class="price-desc">For high-volume sellers</p> <div class="price-amount">$99<span>/mo</span></div> <ul class="price-list"> <li>Unlimited listings</li> <li>All 5 marketplaces</li> <li>API access</li> <li>Custom brand voice</li> <li>Team collaboration</li> <li>Dedicated account manager</li> </ul> <a href="#cta" class="btn btn-outline price-btn">Get Started</a> </div> </div> </div> </section>
+<section class="section" id="testimonials"> <div class="container"> <div class="text-center fade-up"> <div class="section-label">Testimonials</div> <h2 class="section-title">Loved by Sellers Across the US</h2> <p class="section-sub">Don't just take our word for it. See what real marketplace sellers are saying.</p> </div> <div class="test-grid"> <div class="test-card fade-up"> <div class="test-stars">★★★★★</div> <p class="test-text">"MarketReady completely changed how I list products on Amazon. My click-through rate jumped 42% in the first month. The AI-generated bullet points are genuinely better than what I was writing myself."</p> <div class="test-author"> <div class="test-avatar">JM</div> <div><div class="test-name">Jason Miller</div><div class="test-role">Amazon FBA Seller · Austin, TX</div></div> </div> </div> <div class="test-card fade-up"> <div class="test-stars">★★★★★</div> <p class="test-text">"I sell on three different marketplaces and used to spend entire weekends rewriting listings for each one. Now I generate all three versions in under a minute. This tool literally saved my sanity."</p> <div class="test-author"> <div class="test-avatar">SR</div> <div><div class="test-name">Sarah Rodriguez</div><div class="test-role">Multi-Channel Seller · Miami, FL</div></div> </div> </div> <div class="test-card fade-up"> <div class="test-stars">★★★★★</div> <p class="test-text">"The keyword research alone is worth the subscription. I've been ranking on page one for terms I didn't even know existed. My Etsy shop revenue doubled in 60 days."</p> <div class="test-author"> <div class="test-avatar">DW</div> <div><div class="test-name">David Walsh</div><div class="test-role">Etsy &amp; Shopify Seller · Portland, OR</div></div> </div> </div> <div class="test-card fade-up"> <div class="test-stars">★★★★★</div> <p class="test-text">"We onboarded our entire team of 8 on the Enterprise plan. The consistency across 500+ SKUs is remarkable. Our Walmart listings went from invisible to top 10 in our category."</p> <div class="test-author"> <div class="test-avatar">LP</div> <div><div class="test-name">Lisa Park</div><div class="test-role">eCommerce Director · Chicago, IL</div></div> </div> </div> </div> </div> </section>
+<section class="section cta-section" id="cta"> <div class="container"> <div class="cta-box fade-up"> <div class="section-label">Get Started Today</div> <h2>Ready to Create Listings That Convert?</h2> <p>Join 12,000+ sellers who are already using AI to outsell their competition. Start your free trial — no credit card required.</p> <form class="email-form" onsubmit="handleSubmit(event)"> <input type="email" placeholder="Enter your email address" required id="emailInput"> <button type="submit" class="btn btn-primary">Get Started Free</button> </form> <p class="form-note">Free 7-day trial · No credit card required · Cancel anytime</p> </div> </div> </section>
+<footer> <div class="container"> <div class="footer-top"> <div class="footer-brand"> <div class="logo" style="font-size:1.3rem">Market<span>Ready</span></div> <p>AI-powered product listing optimization for marketplace sellers. Create better listings, rank higher, sell more.</p> </div> <div class="footer-links-grid"> <div class="footer-col"> <h4>Product</h4> <a href="#features">Features</a> <a href="#pricing">Pricing</a> <a href="#how">How It Works</a> <a href="#">API Docs</a> </div> <div class="footer-col"> <h4>Company</h4> <a href="#">About</a> <a href="#">Blog</a> <a href="#">Careers</a> <a href="#">Contact</a> </div> <div class="footer-col"> <h4>Legal</h4> <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a> <a href="#">Cookie Policy</a> </div> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 MarketReady. All rights reserved.</p> <div class="footer-social"> <a href="#" aria-label="Twitter">𝕏</a> <a href="#" aria-label="LinkedIn">in</a> <a href="#" aria-label="YouTube">▶</a> </div> </div> </div> </footer>
+<script> const nav=document.getElementById('navbar'); window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)}); function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('active')} const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'}); document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el)); function handleSubmit(e){ e.preventDefault(); const input=document.getElementById('emailInput'); const email=input.value; if(email){ input.value=''; const form=e.target; form.innerHTML='<p style="font-size:1.1rem;font-weight:600;color:#4ade80;padding:16px 0">✓ You\'re on the list! Check your email to get started.</p>'; } } document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const target=document.querySelector(a.getAttribute('href')); if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})} }); }); </script> </body> </html> ```
