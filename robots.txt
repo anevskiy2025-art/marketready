@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anevskiy2025-art.github.io/marketready/sitemap.xml
